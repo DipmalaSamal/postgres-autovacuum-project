@@ -19,6 +19,9 @@ services:
     container_name: postgres_exporter
     environment:
       DATA_SOURCE_NAME: "postgresql://dbtune_user:dbtune_pass@postgres:5432/test_db?sslmode=disable"
+      PG_EXPORTER_EXTEND_QUERY_PATH: /queries/queries.yaml
+    volumes:
+      - ./queries:/queries  
     ports:
       - "9187:9187"
     restart: always     
