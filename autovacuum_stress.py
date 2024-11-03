@@ -39,7 +39,7 @@ except psycopg2.Error as e:
 # Step 2: Load Mock Data
 try:
     print("Populating database with initial data...")
-    for _ in range(10000):  # Adjust for amount of data
+    for _ in range(50000):  # Adjust for amount of data
         cur.execute('''
             INSERT INTO test_schema.test_table (name, address, email) 
             VALUES (%s, %s, %s);
@@ -51,7 +51,7 @@ except psycopg2.Error as e:
 # Step 3: Stress Autovacuum
 try:
     print("Running autovacuum stress test...")
-    for _ in range(10000):  # Number of rows to generate dead tuples
+    for _ in range(50000):  # Number of rows to generate dead tuples
         # Insert rows
         cur.execute('''
             INSERT INTO test_schema.test_table (name, address, email) 
@@ -61,11 +61,11 @@ try:
         # Delete rows to create dead tuples
         cur.execute('''
             DELETE FROM test_schema.test_table 
-            WHERE id IN (SELECT id FROM test_schema.test_table ORDER BY random() LIMIT 100);
+            WHERE id IN (SELECT id FROM test_schema.test_table ORDER BY random() LIMIT 1000);
         ''')
         
         # Brief pause to allow autovacuum to catch up or lag behind
-        time.sleep(0.1)
+        time.sleep(0.05)
     print("Autovacuum stress test complete.")
 except psycopg2.Error as e:
     print("Error during autovacuum stress test:", e)

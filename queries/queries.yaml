@@ -1,15 +1,4 @@
 pg_stat_user_tables:
-  query: "SELECT schemaname, relname, autovacuum_count FROM pg_stat_user_tables"
-  
-pg_postmaster:
-  query: "SELECT pg_postmaster_start_time as start_time_seconds from pg_postmaster_start_time()"
-  master: true
-  metrics:
-    - start_time_seconds:
-        usage: "GAUGE"
-        description: "Time at which postmaster started"
-
-pg_stat_user_tables:
   query: |
    SELECT
      current_database() datname,
