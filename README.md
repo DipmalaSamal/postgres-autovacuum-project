@@ -20,15 +20,14 @@ Project Overview
 The purpose of this project is to simulate a high workload on the autovacuum process in PostgreSQL. By creating dead tuples through inserts and deletes, we can observe the performance of autovacuum in real-time. Metrics are gathered using Prometheus and displayed in Grafana for comprehensive analysis.
 
 Prerequisites
-Install Docker and Docker Compose on your system:
-* Docker Installation Guide
-Install Git, Python, psycopg2, and faker:
-* brew install python
-* brew install git
-* pip3 install psycopg2-binary
-* pip3 install faker
-
-Internet access to pull required Docker images.
+* Install Docker and Docker Compose on your system:
+  * (https://docs.docker.com/desktop/install/mac-install/)
+* Install Git, Python, psycopg2, and faker:
+  * brew install python
+  * brew install git
+  * pip3 install psycopg2-binary
+  * pip3 install faker
+* Internet access to pull required Docker images.
 
 Project Structure
 
@@ -43,17 +42,17 @@ postgres-autovacuum-project
 └── grafana/                         # Grafana dashboard configuration (JSON files)
 
 
+
 Installation
 
-Start Docker Services: Run the following command to start PostgreSQL, Prometheus, Grafana, and other services defined in docker-compose.yml:
-
-docker-compose up -d
+* Start Docker Services: 
+ * Run the following command to start PostgreSQL, Prometheus, Grafana, and other services defined in docker-compose.yml:
+   * docker-compose up -d
 
 Usage
 
-* Run Autovacuum Stress Test: Populate the initial schema, load mock data, and generate dead tuples:
-
-python autovacuum_stress_test.py
+* Populate the initial schema, load mock data, and generate dead tuples:
+  * python autovacuum_stress.py
 
 * Access Grafana Dashboard:
 http://localhost:3000
@@ -91,12 +90,11 @@ docker exec -it postgres psql -U postgres -d test_db
 docker exec -it postgres psql -U dbtune_user -d test_db
 
 Metrics Access:
-
-Postgres Exporter: http://localhost:9187/metrics
-Prometheus: http://localhost:9090
-Grafana: http://localhost:3000
-User: admin
-Password: admin
+* Postgres Exporter: http://localhost:9187/metrics
+* Prometheus: http://localhost:9090
+* Grafana: http://localhost:3000
+  * User: admin
+  * Password: admin
 
 Notes
 
