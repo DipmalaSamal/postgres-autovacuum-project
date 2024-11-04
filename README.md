@@ -14,7 +14,7 @@ This project sets up a PostgreSQL instance in Docker, loads mock data, and appli
 * Access
 * Notes
 
-##Project Overview
+## Project Overview
 
 The purpose of this project is to simulate a high workload on the autovacuum process in PostgreSQL. By creating dead tuples through inserts and deletes, we can observe the performance of autovacuum in real-time. Metrics are gathered using Prometheus and displayed in Grafana for comprehensive analysis.
 
@@ -32,7 +32,7 @@ The purpose of this project is to simulate a high workload on the autovacuum pro
 
 ```
 postgres-autovacuum-project
-├── autovacuum_stress_test.py       # Main script for stressing autovacuum
+├── autovacuum_stress.py             # Main script for stressing autovacuum
 ├── docker-compose.yml               # Docker setup for PostgreSQL, Prometheus, and Grafana
 ├── prometheus/                      # Prometheus configuration directory
 │   └── prometheus.yml               # Prometheus configuration for scraping metrics
@@ -52,7 +52,7 @@ postgres-autovacuum-project
 ## Usage
 
 * Populate the initial schema, load mock data, and generate dead tuples:
-  * python autovacuum_stress.py
+  * python3 autovacuum_stress.py
 
 * Access Grafana Dashboard:
 http://localhost:3000
@@ -78,16 +78,13 @@ Password: admin
 PostgreSQL Users:
 
 * User: postgres
-
-Password: admin
+* Password: admin
 * User: dbtune_user
-
-Password: dbtune_pass
+* Password: dbtune_pass
 * Database Name: test_db
-Access PostgreSQL using:
-
-docker exec -it postgres psql -U postgres -d test_db
-docker exec -it postgres psql -U dbtune_user -d test_db
+* Access PostgreSQL using:
+  * docker exec -it postgres psql -U postgres -d test_db
+  * docker exec -it postgres psql -U dbtune_user -d test_db
 
 ## Metrics Access:
 * Postgres Exporter: http://localhost:9187/metrics
@@ -123,7 +120,7 @@ When autovacuum is unable to handle the workload, consider adjusting the followi
 
 * Increase the Number of Autovacuum Workers:
   * Parameter: autovacuum_max_workers
-  * Recommended Adjustment: Increase from default (3) to a higher value to allow more concurrent autovacuum jobs. 
+  * Recommended Adjustment: Increase from default (3) to a higher value (5 or 8) to allow more concurrent autovacuum jobs. 
 
 * Autovacuum Nap Time:
   * Parameter: autovacuum_naptime
