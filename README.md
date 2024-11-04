@@ -54,7 +54,7 @@ postgres-autovacuum-project
 * Populate the initial schema, load mock data, and generate dead tuples:
   * python3 autovacuum_stress.py
 
-* Access Grafana Dashboard:
+* Access Grafana Dashboard Postgres Autovacuum:
 http://localhost:3000
 
 Login: admin
