@@ -31,6 +31,7 @@ Prerequisites
 
 Project Structure
 
+```
 postgres-autovacuum-project
 ├── autovacuum_stress_test.py       # Main script for stressing autovacuum
 ├── docker-compose.yml               # Docker setup for PostgreSQL, Prometheus, and Grafana
@@ -40,7 +41,7 @@ postgres-autovacuum-project
 ├── queries.yaml                     # Custom metrics for PostgreSQL monitoring
 ├── README.md                        # Project documentation
 └── grafana/                         # Grafana dashboard configuration (JSON files)
-
+```
 
 
 Installation
