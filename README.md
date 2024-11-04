@@ -1,8 +1,8 @@
-PostgreSQL Autovacuum Stress Test
+# PostgreSQL Autovacuum Stress Test
 
 This project sets up a PostgreSQL instance in Docker, loads mock data, and applies workload stress to the autovacuum process. Observability tools like Prometheus and Grafana are integrated to monitor database performance. The goal is to understand autovacuum behavior under high workload conditions and adjust PostgreSQL parameters.
 
-Table of Contents
+## Table of Contents
 
 * Project Overview
 * Prerequisites
@@ -14,12 +14,11 @@ Table of Contents
 * Access
 * Notes
 
-Project Overview
-
+##Project Overview
 
 The purpose of this project is to simulate a high workload on the autovacuum process in PostgreSQL. By creating dead tuples through inserts and deletes, we can observe the performance of autovacuum in real-time. Metrics are gathered using Prometheus and displayed in Grafana for comprehensive analysis.
 
-Prerequisites
+## Prerequisites
 * Install Docker and Docker Compose on your system:
   * (https://docs.docker.com/desktop/install/mac-install/)
 * Install Git, Python, psycopg2, and faker:
@@ -29,7 +28,7 @@ Prerequisites
   * pip3 install faker
 * Internet access to pull required Docker images.
 
-Project Structure
+## Project Structure
 
 ```
 postgres-autovacuum-project
@@ -44,13 +43,13 @@ postgres-autovacuum-project
 ```
 
 
-Installation
+## Installation
 
 * Start Docker Services: 
  * Run the following command to start PostgreSQL, Prometheus, Grafana, and other services defined in docker-compose.yml:
    * docker-compose up -d
 
-Usage
+## Usage
 
 * Populate the initial schema, load mock data, and generate dead tuples:
   * python autovacuum_stress.py
@@ -62,19 +61,19 @@ Login: admin
 
 Password: admin
 
-Configuration
+## Configuration
 * Docker Compose Configuration: Modify docker-compose.yml to adjust service parameters.
 * Prometheus Configuration: Customize prometheus.yml to change scraping intervals.
 * Queries Configuration: The postgres_exporter serves as a monitoring sidecar, gathering metrics about the PostgreSQL database and exposing them to Prometheus. These metrics are defined in queries.yaml for custom metrics displayed in Grafana.
 
 
-Observability Tools
+## Observability Tools
 
 * Prometheus: Collects metrics from the PostgreSQL exporter and serves them to Grafana.
 * Grafana: Visualizes metrics for PostgreSQL tables, autovacuum operations, and dead tuple counts.
 
 
-Access
+## Access
 
 PostgreSQL Users:
 
@@ -90,14 +89,14 @@ Access PostgreSQL using:
 docker exec -it postgres psql -U postgres -d test_db
 docker exec -it postgres psql -U dbtune_user -d test_db
 
-Metrics Access:
+## Metrics Access:
 * Postgres Exporter: http://localhost:9187/metrics
 * Prometheus: http://localhost:9090
 * Grafana: http://localhost:3000
   * User: admin
   * Password: admin
 
-Notes
+## Notes
 
 How do we see that the autovacuum is indeed failing to satisfactorily do its job?
 
