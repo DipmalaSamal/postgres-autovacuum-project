@@ -39,7 +39,7 @@ except psycopg2.Error as e:
 # Step 2: Load Mock Data
 try:
     print("Populating database with initial data...")
-    for _ in range(200000):  # Adjust for amount of data
+    for _ in range(200000):  
         cur.execute('''
             INSERT INTO test_schema.test_table (name, address, email) 
             VALUES (%s, %s, %s);
@@ -64,7 +64,7 @@ try:
             WHERE id IN (SELECT id FROM test_schema.test_table ORDER BY random() LIMIT 10000);
         ''')
         # Shortened pause to increase the load
-        time.sleep(0.01)  # Optional: very short pause to simulate rapid transactions
+        time.sleep(0.01)  
     print("Autovacuum stress test complete.")
 except psycopg2.Error as e:
     print("Error during autovacuum stress test:", e)
