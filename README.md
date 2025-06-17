@@ -79,8 +79,8 @@ PostgreSQL Users:
 
 * User: postgres
 * Password: admin
-* User: dbtune_user
-* Password: dbtune_pass
+* User: db_user
+* Password: db_pass
 * Database Name: test_db
 * Access PostgreSQL using:
   * docker exec -it postgres psql -U postgres -d test_db
